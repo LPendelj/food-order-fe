@@ -1,36 +1,37 @@
 ul{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  list-style-type: none;
-  padding: 0;
+  display: flex; //deca elementi poslagani su u redu (default) ili koloni (FLEX CONTAINER)
+  justify-content: center; // deca elementi se grupisu u SREDINI reda ili kolone po x osi
+  align-items: center; // deca elementi se grupisu u SREDINI reda ili kolone po y osi
+  flex-wrap: wrap; //elementi koji ne staju u jedan red, prelaze u sledeci. Ostale opcije su no-wrap
+  //(nista se ne prebacuje vec se gomilaju jedni preko drugih) i wrap-reverse gde se u sledecem redu krece naopako.
+  list-style-type: none; //stavke u listi ne dobijaju tacku ili bilo koji drugi oznactelj na pocetku reda.
+  padding: 0; // unutrasnje margine su 0?
 }
 
 li a{
-  height: 22.5rem;
-  width: 20rem;
+  height: 22.5rem; //visina elementa izrazena u rem?
+  width: 20rem; // sirina elementa
   border: 1px solid whitesmoke;
-  border-radius: 1rem;
-  margin: 0.5rem;
+  border-radius: 1rem; // stepen nakrivljenosti granice elementa
+  margin: 0.5rem; // spoljna margina
   display: flex;
-  flex-direction: column;
+  flex-direction: column; // nepredvidjeni smer? default je row
   overflow: hidden;
   color: #e72929;
 
   &:hover{
-    opacity: 0.9;
-    cursor: pointer;
+    opacity: 0.9; // stepen (ne)providnosti elementa
+    cursor: pointer; // slicica kursora koja oznacava klikabilan element
   }
 }
 
 .content{
   padding: 0.5rem 1rem;
-  position: relative;
+  position: relative; //potrebno da bi se unutar njega element postavio apsolutno
 }
 
 .favorite{
-  position: absolute;
+  position: absolute; //apsolutna pozicija elementa, postavlja se pomocu top,left,right i bottom property-ja
   top: .5rem;
   right: 1rem;
   font-size: 1.2rem;
