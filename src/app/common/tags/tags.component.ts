@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FoodService } from 'src/app/services/food/food.service';
-import { Tag } from 'src/app/shared/Tag';
+import { Tag } from 'src/app/shared/models/Tag';
 
 @Component({
   selector: 'app-tags',
@@ -21,7 +21,11 @@ export class TagsComponent implements OnInit {
 
   ngOnInit(): void {
     if(!this.foodPageTags){
-      this.tags = this.foodService.getAllTags();
+      this.foodService.getAllTags().subscribe(
+        (serverTags)=>{
+          this.tags = serverTags
+        }
+      );
     }
 
   }
