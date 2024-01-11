@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
 import { HomeComponent } from './components/home/home.component';
-import { RatingModule } from 'ng-starrating';
 import { SearchComponent } from './common/search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TagsComponent } from './common/tags/tags.component';
@@ -14,7 +13,7 @@ import { CartPageComponent } from './components/cart-page/cart-page.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginPageComponent } from './components/login-page/login-page.component'
-//import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -32,11 +31,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RatingModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-   // ToastrModule,
+   ToastrModule,
     BrowserAnimationsModule
   ],
   providers: [],
