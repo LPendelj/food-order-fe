@@ -34,7 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-   ToastrModule,
+    ToastrModule,
     BrowserAnimationsModule
   ],
   providers: [],

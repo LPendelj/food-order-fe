@@ -5,7 +5,7 @@ import { FoodPageComponent } from './components/food-page/food-page.component';
 import { CartPageComponent } from './components/cart-page/cart-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 
-const routes: Routes = [
+const ROUTES: Routes = [
   {
     path:'',
     component: HomeComponent
@@ -33,7 +33,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(ROUTES)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
