@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart/cart.service';
+import { UserService } from 'src/app/services/user/user.service';
+
+import { User } from 'src/app/shared/models/User';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  cartQuantity=0;
+  user!:User;
+  constructor(
+    private cartService:CartService,
+    private userService:UserService
+    ) {
+    cartService.getCartObservable().subscribe((newCart) => {
+      this.cartQuantity = newCart['totalCount'];
+    })
+
+    userService.userObservable.subscribe((newUser: User) => {
+      this.user = newUser;
+    })
+   }
 
   ngOnInit(): void {
   }
 
+  logout(){
+    this.userService.logout();
+  }
+
+  get isAuth(){
+    return this.user.token;
+  }
 }

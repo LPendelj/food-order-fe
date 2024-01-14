@@ -6,12 +6,20 @@ import { USER_LOGIN_URL } from 'src/app/shared/constants/urls';
 import { UserLogin } from 'src/app/shared/interfaces/UserLogin';
 import { User } from 'src/app/shared/models/User';
 
+ const USER_KEY = 'User';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private userSubject = new BehaviorSubject<User>(new User());
+
+  logout() {
+   this.userSubject.next(new User());
+   localStorage.removeItem(USER_KEY);
+   window.location.reload();
+  }
+
+  private userSubject = new BehaviorSubject<User>(this.getUserFromLocalStorage());
   public userObservable!: Observable<User>;
 
   constructor(
@@ -27,6 +35,7 @@ export class UserService {
         tap(
           {
             next: (user) => {
+                this.setUserToLocalStorage(user);
                 this.userSubject.next(user);
                 this.toastrService.success(`Welcome to Foodmine ${user.name}`, 'Login successful')
             },
@@ -36,5 +45,15 @@ export class UserService {
           }
         )
       )
+  }
+
+  private setUserToLocalStorage(user: User){
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
+  }
+
+  private getUserFromLocalStorage(): User{
+    const userJson = localStorage.getItem(USER_KEY);
+    if(userJson) return JSON.parse(userJson) as User;
+    return new User()
   }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Cart } from 'src/app/shared/models/Cart';
 import { CartItem } from 'src/app/shared/models/CartItem';
 import { Food } from 'src/app/shared/models/Food';
@@ -7,9 +8,11 @@ import { Food } from 'src/app/shared/models/Food';
   providedIn: 'root'
 })
 export class CartService {
-
-
+  
   private cart: Cart = new Cart();
+  private cartSubject: BehaviorSubject<Cart> = new BehaviorSubject(this.cart);
+
+
 
   addToCart(food: Food): void{
     let cartItem = this.cart.items.find(item => item.food.id === food.id);
@@ -29,6 +32,10 @@ export class CartService {
 
   removeFromCart(foodId: number){
     this.cart.items = this.cart.items.filter(item => item.food.id != foodId)
+  }
+
+  getCartObservable(): Observable<Cart> {
+    return this.cartSubject.asObservable();
   }
 
   getCart(){
