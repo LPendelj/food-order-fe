@@ -15,6 +15,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginPageComponent } from './components/login-page/login-page.component'
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputContainerComponent } from './components/partials/input-container/input-container.component';
+import { InputValidationComponent } from './components/partials/input-validation/input-validation.component';
+import { TextInputComponent } from './components/partials/text-input/text-input.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FoodPageComponent,
     CartPageComponent,
     NotFoundComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    InputContainerComponent,
+    InputValidationComponent,
+    TextInputComponent
   ],
   imports: [
     BrowserModule,
