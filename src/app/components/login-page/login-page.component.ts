@@ -40,7 +40,11 @@ export class LoginPageComponent implements OnInit {
     console.log("submitted");
 
     this.isSubmitted = true;
-    if(this.loginForm.invalid) return;
+    if(this.loginForm.invalid) {
+      console.log('form invalid');
+
+      return;
+    }
     this.userService.login({
       email: this.fc['email'].value,
       password: this.fc['password'].value

@@ -37,6 +37,7 @@ export class UserService {
             next: (user) => {
                 this.setUserToLocalStorage(user);
                 this.userSubject.next(user);
+                console.log("successful login");
                 this.toastrService.success(`Welcome to Foodmine ${user.name}`, 'Login successful')
             },
             error: (errorResponse) => {

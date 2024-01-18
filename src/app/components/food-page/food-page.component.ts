@@ -18,13 +18,14 @@ export class FoodPageComponent implements OnInit {
     private foodService: FoodService,
     private cartService: CartService,
     private router: Router
-  ) { }
+  ) {
 
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe(
+    activatedRoute.params.subscribe(
       params => {
+        console.log(params);
         if(params['id']){
          this.foodService.getFoodById(params['id']).subscribe((serverFood) => {
+          console.log(serverFood)
           this.food = serverFood;
          }
          )
@@ -32,6 +33,11 @@ export class FoodPageComponent implements OnInit {
 
       }
     )
+
+   }
+
+  ngOnInit(): void {
+
   }
 
   addToCart(){
