@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto:wght@400;700&display=swap');
 
+
 // In addition to flex-wrap, there are several other important CSS properties that can be used to control the behavior of flex containers and flex items. Here are some key properties:
 // display: flex;: This property is applied to the container and establishes a flex container, enabling the use of flex properties on its children.
 // flex-direction: row | row-reverse | column | column-reverse;: Determines the main axis direction of the flex container. By default, it is set to row, which means the main axis runs horizontally. The other options change the main axis direction accordingly.
@@ -10,6 +11,8 @@
 // flex-grow: Determines how flex items grow relative to each other along the main axis when there is extra space available.
 // flex-shrink: Specifies how flex items shrink relative to each other along the main axis when there is not enough space.
 // flex-basis: Sets the initial size of flex items along the main axis before they are distributed.
+
+@import 'node_modules/ngx-toastr/toastr.css';
 
 *{
   box-sizing: border-box;
