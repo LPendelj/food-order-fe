@@ -33,7 +33,10 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "leaflet"
+            ]
           },
           "configurations": {
             "production": {
@@ -100,7 +103,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/leaflet/dist/leaflet.css"
             ],
             "scripts": []
           }
