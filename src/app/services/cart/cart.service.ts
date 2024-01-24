@@ -8,7 +8,7 @@ import { Food } from 'src/app/shared/models/Food';
   providedIn: 'root'
 })
 export class CartService {
-  
+
   private cart: Cart = new Cart();
   private cartSubject: BehaviorSubject<Cart> = new BehaviorSubject(this.cart);
 
@@ -39,6 +39,6 @@ export class CartService {
   }
 
   getCart(){
-    return this.cart
+    return this.cartSubject.value;
   }
 }

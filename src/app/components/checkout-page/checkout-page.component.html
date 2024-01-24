@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="content">
+    <h2>Order form</h2>
+    <form [formGroup]="checkoutForm">
+      <text-input [control]="fc.name" label="Name">
+
+      </text-input>
+      <text-input [control]="fc.address" label="Address">
+
+      </text-input>
+    </form>
+    <order-item-list [order]="order"></order-item-list>
+  </div>
+  <div class="map">
+    <h2>
+      Choose your address on map!
+    </h2>
+  </div>
+  <div class="buttons-container">
+    <div class="button">
+      <button (click)="createOrder()">Go to payment</button>
+    </div>
+  </div>
+</div>

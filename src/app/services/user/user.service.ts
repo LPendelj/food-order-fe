@@ -12,6 +12,10 @@ import { User } from 'src/app/shared/models/User';
   providedIn: 'root'
 })
 export class UserService {
+  
+  public get currentUser():User{
+    return this.userSubject.value;
+  };
 
 
   logout() {

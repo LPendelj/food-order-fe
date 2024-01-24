@@ -5,6 +5,7 @@ import { FoodPageComponent } from './components/food-page/food-page.component';
 import { CartPageComponent } from './components/cart-page/cart-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { CheckoutPageComponent } from './components/checkout-page/checkout-page.component';
 
 const ROUTES: Routes = [
   {
@@ -34,6 +35,10 @@ const ROUTES: Routes = [
   {
     path: 'register',
     component: RegisterPageComponent
+  },
+  {
+    path: 'checkout',
+    component: CheckoutPageComponent
   }
 ];
 
