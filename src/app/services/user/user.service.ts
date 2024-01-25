@@ -6,13 +6,14 @@ import { USER_LOGIN_URL, USER_REGISTER_URL } from 'src/app/shared/constants/urls
 import { UserLogin } from 'src/app/shared/interfaces/UserLogin';
 import { UserRegister } from 'src/app/shared/interfaces/UserRegister';
 import { User } from 'src/app/shared/models/User';
+import { CartService } from '../cart/cart.service';
 
  const USER_KEY = 'User';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  
+
   public get currentUser():User{
     return this.userSubject.value;
   };
@@ -20,6 +21,7 @@ export class UserService {
 
   logout() {
    this.userSubject.next(new User());
+   this.cartService.removeCartFromLocalStorage()
    localStorage.removeItem(USER_KEY);
    window.location.reload();
   }
@@ -29,7 +31,8 @@ export class UserService {
 
   constructor(
     private http: HttpClient,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private cartService: CartService
   ) {
     this.userObservable = this.userSubject.asObservable();
   }
