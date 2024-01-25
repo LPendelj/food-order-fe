@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="content" *ngIf="order">
+    <h1>Order #{{order.id}}</h1>
+    <div class="details">
+      <div>
+        <strong>Date</strong> {{order.createdAt | date}}
+      </div>
+    </div>
+  </div>
+</div>

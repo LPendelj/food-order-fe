@@ -46,6 +46,7 @@ export class PaypalButtonComponent implements OnInit {
       onApprove: async (data: any, actions: any) => {
         const payment = await actions.order.capture();
         this.order.paymentId = payment.id;
+        
         self.orderService.pay(this.order).subscribe(
           {
             next: (orderId) => {
