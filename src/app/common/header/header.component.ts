@@ -17,17 +17,20 @@ export class HeaderComponent implements OnInit {
     private cartService:CartService,
     private userService:UserService
     ) {
-    cartService.getCartObservable().subscribe((newCart) => {
-      this.cartQuantity = newCart['totalCount'];
-    })
 
-    userService.userObservable.subscribe((newUser: User) => {
-      console.log(newUser)
-      this.user = newUser;
-    })
    }
 
   ngOnInit(): void {
+    this.cartService.getCartObservable().subscribe((newCart) => {
+      this.cartQuantity = newCart.totalCount;
+      console.log(newCart)
+    })
+
+    this.userService.userObservable.subscribe((newUser: User) => {
+      console.log(newUser)
+
+      this.user = newUser;
+    })
   }
 
   logout(){
