@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ORDERS_CREATE_URL } from 'src/app/shared/constants/urls';
+import { Observable } from 'rxjs';
+import { ORDERS_CREATE_URL, ORDERS_CURRENT_USER_URL } from 'src/app/shared/constants/urls';
 import { Order } from 'src/app/shared/models/Order';
 
 @Injectable({
@@ -14,5 +15,9 @@ export class OrderService {
 
   create(order: Order){
     return this.httpClient.post<Order>(ORDERS_CREATE_URL, order);
+  }
+
+  getNewOrderForCurrentUser(): Observable<Order>{
+    return this.httpClient.get<Order>(ORDERS_CURRENT_USER_URL);
   }
 }

@@ -12,6 +12,10 @@ export const USER_REGISTER_URL = BASE_URL + '/api/users/register'
 
 export const ORDERS_URL = BASE_URL + '/api/orders'
 export const ORDERS_CREATE_URL = ORDERS_URL + '/create'
+export const ORDERS_CURRENT_USER_URL = ORDERS_URL + '/newOrderForCurrentUser'
+
+
+
 
 
 
