@@ -11,13 +11,13 @@ ul{
 li a{
   height: 22.5rem; //visina elementa izrazena u rem?
   width: 20rem; // sirina elementa
-  border: 1px solid whitesmoke;
+  border: 1px solid var(--border-color);
   border-radius: 1rem; // stepen nakrivljenosti granice elementa
   margin: 0.5rem; // spoljna margina
   display: flex;
   flex-direction: column; // nepredvidjeni smer? default je row
   overflow: hidden;
-  color: #e72929;
+  color: var(--primary-color);
 
   &:hover{
     opacity: 0.9; // stepen (ne)providnosti elementa
@@ -51,16 +51,37 @@ li a{
   align-items: center;
 }
 
-.origins{
-  flex: 9;
-
-  & span{
-    border-radius: 2rem;
-    background-color: whitesmoke;
-    display: inline-block;
-    font-size: 0.7rem;
-    color: grey;
-    margin-right: .3rem;
+.origins {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) 0;
+  
+  span {
+    padding: 0.15rem 0.25rem;
+    background-color: var(--surface-color);
+    color: var(--text-primary);
+    border-radius: 2px;
+    font-weight: 500;
+    font-size: 0.75rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+    border: 1px solid var(--border-color);
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      background-color: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+    
+    &.selected {
+      background-color: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
   }
 }
 

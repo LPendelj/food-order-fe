@@ -1,16 +1,16 @@
 header{
   position: relative;
-  background: white;
+  background: var(--secondary-color);
   padding: 0;
-  border-bottom: 1px solid #e72929;
+  border-bottom: 1px solid var(--primary-color);
 }
 
 a{
-  color: #af1313;
+  color: var(--primary-color);
 }
 
 a:hover{
-  background:#e72929;
+   background: var(--primary-color);
   color: white;
   cursor: pointer;
 }

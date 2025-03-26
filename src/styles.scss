@@ -1,33 +1,139 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+// Design Tokens
+:root {
+  // Colors
+  --primary-color: #004E64;
+  --primary-hover: #00A5CF;
+  --secondary-color: #7AE582;
+  --background-color: #abf1ec;
+  --surface-color: #FFFFFF;
+  --text-primary: #2B2B2B;
+  --text-secondary: #6B7280;
+  --border-color: #00A5CF;
+  
+  // Spacing
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  
+  // Border Radius
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  
+  // Shadows
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 
-// In addition to flex-wrap, there are several other important CSS properties that can be used to control the behavior of flex containers and flex items. Here are some key properties:
-// display: flex;: This property is applied to the container and establishes a flex container, enabling the use of flex properties on its children.
-// flex-direction: row | row-reverse | column | column-reverse;: Determines the main axis direction of the flex container. By default, it is set to row, which means the main axis runs horizontally. The other options change the main axis direction accordingly.
-// justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly;: Specifies how flex items are aligned along the main axis. It determines the distribution of space between and around the flex items.
-// align-items: flex-start | flex-end | center | baseline | stretch;: Defines how flex items are aligned on the cross axis (perpendicular to the main axis).
-// align-content: flex-start | flex-end | center | space-between | space-around | stretch;: Controls the alignment of flex lines when there is extra space available on the cross axis. It specifies the distribution of space between and around flex lines.
-// flex-grow: Determines how flex items grow relative to each other along the main axis when there is extra space available.
-// flex-shrink: Specifies how flex items shrink relative to each other along the main axis when there is not enough space.
-// flex-basis: Sets the initial size of flex items along the main axis before they are distributed.
+  // https://coolors.co/004e64-00a5cf-9fffcb-25a18e-7ae582
+  // 004E64
+  // 00A5CF
+  // 9FFFCB
+  // 7AE582
+}
 
 @import 'node_modules/ngx-toastr/toastr.css';
 
-*{
+* {
   box-sizing: border-box;
-}
-
-html{
-  font-size: 16px;
-}
-
-body{
   margin: 0;
-  font-family: "Quicksand", sans-serif;
-  font-size: 18px;
+  padding: 0;
 }
 
-a{
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: var(--background-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
   text-decoration: none;
+  color: inherit;
+}
+
+// Utility Classes
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  outline: none;
+  
+  &-primary {
+    background-color: var(--primary-color);
+    color: white;
+    
+    &:hover {
+      background-color: var(--primary-hover);
+    }
+  }
+  
+  &-secondary {
+    background-color: var(--surface-color);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    
+    &:hover {
+      background-color: var(--background-color);
+    }
+  }
+}
+
+.card {
+  background-color: var(--surface-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+// Modern Scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: var(--radius-sm);
+  
+  &:hover {
+    background: var(--text-secondary);
+  }
 }

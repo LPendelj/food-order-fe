@@ -1,0 +1,33 @@
+<div class="product-card">
+  <div class="product-image">
+    <img [src]="product.imageUrl" [alt]="product.name">
+    <div class="product-badges">
+      <span *ngIf="product.discount" class="badge discount">-{{product.discount}}%</span>
+      <span *ngIf="product.isNew" class="badge new">New</span>
+    </div>
+  </div>
+  
+  <div class="product-content">
+    <div class="product-header">
+      <h3 class="product-name">{{product.name}}</h3>
+      <div class="product-rating">
+        <span class="rating-value">{{product.rating}}</span>
+        <i class="fas fa-star"></i>
+      </div>
+    </div>
+    
+    <p class="product-description">{{product.description}}</p>
+    
+    <div class="product-footer">
+      <div class="product-price">
+        <span class="current-price">{{product.price | currency}}</span>
+        <span *ngIf="product.originalPrice" class="original-price">{{product.originalPrice | currency}}</span>
+      </div>
+      
+      <button *ngIf="showAddToCart" class="add-to-cart-btn">
+        <i class="fas fa-plus"></i>
+        Add
+      </button>
+    </div>
+  </div>
+</div> 
