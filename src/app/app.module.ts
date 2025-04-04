@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +29,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { PaymentPageComponent } from './components/payment-page/payment-page.component';
 import { PaypalButtonComponent } from './components/partials/paypal-button/paypal-button.component';
 import { OrderTrackPageComponent } from './components/order-track-page/order-track-page.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,9 @@ import { OrderTrackPageComponent } from './components/order-track-page/order-tra
       timeOut: 4000,
       positionClass: 'toast-bottom-right',
       newestOnTop: false
-    })
+    }),
+    StoreModule.forRoot(),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [
      {

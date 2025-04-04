@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-search',
@@ -12,7 +13,8 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) { }
 
   ngOnInit(): void {
