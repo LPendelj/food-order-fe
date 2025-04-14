@@ -35,7 +35,7 @@ import { searchFeatureKey, searchReducer } from './common/search/searchStore/red
 import { EffectsModule, provideEffects } from '@ngrx/effects';
 import  * as searchFoodEffect from './common/search/searchStore/effects';
 import  * as loginEffects from './components/login-page/store/effects';
-import { loginReducer } from './components/login-page/store/reducers';
+import { loginFeatureKey, loginReducer } from './components/login-page/store/reducers';
 
 @NgModule({
   declarations: [
@@ -75,6 +75,8 @@ import { loginReducer } from './components/login-page/store/reducers';
     }),
     StoreModule.forRoot(loginReducer),
     StoreModule.forRoot(searchReducer),
+    StoreModule.forFeature(searchFeatureKey, searchReducer),
+    StoreModule.forFeature(loginFeatureKey, loginReducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: isDevMode(),
@@ -85,6 +87,7 @@ import { loginReducer } from './components/login-page/store/reducers';
     }),
     EffectsModule.forRoot(searchFoodEffect),
     EffectsModule.forRoot(loginEffects),
+    
     // provideEffects(searchFoodEffect)
   ],
   providers: [

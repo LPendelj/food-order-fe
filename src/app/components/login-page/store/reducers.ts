@@ -1,14 +1,17 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { loginActions } from '../store/actions';
+import { User } from 'src/app/shared/models/User';
 
 export interface LoginState {
   isLoading: boolean;
   error: string | null;
+  user: User | null;
 }
 
 const initialState: LoginState = {
   isLoading: false,
   error: null,
+  user: null
 };
 
 const loginFeature = createFeature({
@@ -34,4 +37,10 @@ const loginFeature = createFeature({
   ),
 });
 
-export const { name: loginFeatureKey, reducer: loginReducer, selectIsLoading, selectError } = loginFeature;
+export const {
+  name: loginFeatureKey,
+  reducer: loginReducer,
+  selectIsLoading,
+  selectError,
+  selectUser
+} = loginFeature;
