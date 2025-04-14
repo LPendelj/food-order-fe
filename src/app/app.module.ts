@@ -29,8 +29,13 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { PaymentPageComponent } from './components/payment-page/payment-page.component';
 import { PaypalButtonComponent } from './components/partials/paypal-button/paypal-button.component';
 import { OrderTrackPageComponent } from './components/order-track-page/order-track-page.component';
-import { StoreModule } from '@ngrx/store';
+import { provideState, provideStore, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { searchFeatureKey, searchReducer } from './common/search/searchStore/reducers';
+import { EffectsModule, provideEffects } from '@ngrx/effects';
+import  * as searchFoodEffect from './common/search/searchStore/effects';
+import  * as loginEffects from './components/login-page/store/effects';
+import { loginReducer } from './components/login-page/store/reducers';
 
 @NgModule({
   declarations: [
@@ -68,8 +73,19 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
       positionClass: 'toast-bottom-right',
       newestOnTop: false
     }),
-    StoreModule.forRoot(),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    StoreModule.forRoot(loginReducer),
+    StoreModule.forRoot(searchReducer),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: isDevMode(),
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+      trace: false, //  If set to true, will include stack trace for every dispatched action, so you can see it in trace tab jumping directly to that part of code
+      traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
+      connectOutsideZone: true
+    }),
+    EffectsModule.forRoot(searchFoodEffect),
+    EffectsModule.forRoot(loginEffects),
+    // provideEffects(searchFoodEffect)
   ],
   providers: [
      {

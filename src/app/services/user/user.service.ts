@@ -39,21 +39,22 @@ export class UserService {
 
   login(userLogin: UserLogin): Observable<User>{
     return this.http.post<User>(USER_LOGIN_URL, userLogin)
-      .pipe(
-        tap(
-          {
-            next: (user) => {
-                this.setUserToLocalStorage(user);
-                this.userSubject.next(user);
-                console.log("successful login");
-                this.toastrService.success(`Welcome to Foodmine ${user.name}`, 'Login successful')
-            },
-            error: (errorResponse) => {
-                this.toastrService.error(errorResponse.error, 'Login failed!')
-            }
-          }
-        )
-      )
+    
+      // .pipe(
+      //   tap(
+      //     {
+      //       next: (user) => {
+      //           this.setUserToLocalStorage(user);
+      //           this.userSubject.next(user);
+      //           console.log("successful login");
+      //           this.toastrService.success(`Welcome to Foodmine ${user.name}`, 'Login successful')
+      //       },
+      //       error: (errorResponse) => {
+      //           this.toastrService.error(errorResponse.error, 'Login failed!')
+      //       }
+      //     }
+      //   )
+      // )
   }
 
   register(userRegister: UserRegister): Observable<User> {
@@ -75,7 +76,7 @@ export class UserService {
       )
   }
 
-  private setUserToLocalStorage(user: User){
+  setUserToLocalStorage(user: User){
     localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 

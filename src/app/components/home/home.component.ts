@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { combineLatest, map, Observable } from 'rxjs';
+import { selectItems } from 'src/app/common/search/searchStore/reducers';
 import { FoodService } from 'src/app/services/food/food.service';
 import { Food } from 'src/app/shared/models/Food';
 
@@ -11,23 +13,26 @@ import { Food } from 'src/app/shared/models/Food';
 })
 export class HomeComponent implements OnInit {
 
-  foods: Food[] = [];
+  foods: any[] | null = [];
 
   constructor(
     private foodService: FoodService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private store: Store
     ) { }
 
 
   ngOnInit(): void {
-    let foodsObservable: Observable<Food[]>
+    let foodsObservable: Observable<any[] | null>
     this.foodService.getAll();
     this.activatedRoute.params.subscribe(
       params=>{
         if(params['searchTerm']){
-          foodsObservable = this.foodService.getAllFoodsBySearchTerm(params['searchTerm'])
-        } else if(params['tag']){
-          foodsObservable = this.foodService.getAllFoodsByTag(params['tag']);
+          // foodsObservable = this.foodService.getAllFoodsBySearchTerm(params['searchTerm'])
+          foodsObservable = this.store.select(selectItems)
+        
+        // } else if(params['tag']){
+        //   foodsObservable = this.foodService.getAllFoodsByTag(params['tag']);
         }  else {
           foodsObservable = this.foodService.getAll()
         }

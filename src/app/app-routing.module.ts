@@ -9,6 +9,10 @@ import { CheckoutPageComponent } from './components/checkout-page/checkout-page.
 import { authGuard } from './auth/guards/auth.guard';
 import { PaymentPageComponent } from './components/payment-page/payment-page.component';
 import { OrderTrackPageComponent } from './components/order-track-page/order-track-page.component';
+import { provideState } from '@ngrx/store';
+import { searchFeatureKey, searchReducer } from './common/search/searchStore/reducers';
+import { provideEffects } from '@ngrx/effects';
+import  * as searchFoodEffect from './common/search/searchStore/effects';
 
 const ROUTES: Routes = [
   {
@@ -17,7 +21,8 @@ const ROUTES: Routes = [
   },
   {
     path:'search/:searchTerm',
-    component: HomeComponent
+    component: HomeComponent,
+    providers: [provideState(searchFeatureKey, searchReducer), provideEffects(searchFoodEffect)]
   },
   {
     path: 'tag/:tag',
