@@ -5,6 +5,7 @@ import { combineLatest, map, Observable } from 'rxjs';
 import { selectItems } from 'src/app/common/search/searchStore/reducers';
 import { FoodService } from 'src/app/services/food/food.service';
 import { Food } from 'src/app/shared/models/Food';
+import { selectIsLoading } from '../login-page/store/reducers';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,10 @@ export class HomeComponent implements OnInit {
     private store: Store
     ) { }
 
+  data$ = combineLatest({
+  //   selectItems: this.store.select(selectItems),
+    selectIsLoading: this.store.select(selectIsLoading)
+  })
 
   ngOnInit(): void {
     let foodsObservable: Observable<any[] | null>

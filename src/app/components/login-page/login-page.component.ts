@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs';
 import { UserService } from 'src/app/services/user/user.service';
 import { selectIsLoading } from './store/reducers';
-import { loginActions } from './store/actions';
+import { authActions } from './store/actions';
 
 @Component({
   selector: 'app-login-page',
@@ -22,9 +22,7 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
     private store: Store
     ) { }
 
@@ -40,7 +38,6 @@ export class LoginPageComponent implements OnInit {
 
     this.data$ = combineLatest({
       selectIsLoading: this.store.select(selectIsLoading),
-      // backendErrors: this.store.select(selectValidationErrors),
     });
   }
 
@@ -56,20 +53,13 @@ export class LoginPageComponent implements OnInit {
 
       return;
     }
-    // this.userService.login({
-    //   email: this.fc['email'].value,
-    //   password: this.fc['password'].value
-    // }).subscribe(() => {
-    //   this.router.navigateByUrl(this.returnUrl)
-    // })
 
     const request = {
       email: this.fc['email'].value,
       password: this.fc['password'].value
     };
 
-    this.store.dispatch(loginActions.loginUser({ request }));
-
+    this.store.dispatch(authActions.loginUser({ request }));
   }
 
 }

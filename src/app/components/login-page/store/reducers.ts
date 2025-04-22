@@ -1,46 +1,57 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { loginActions } from '../store/actions';
-import { User } from 'src/app/shared/models/User';
+import { authActions } from '../store/actions';
+import { AuthState } from '../authState';
 
-export interface LoginState {
-  isLoading: boolean;
-  error: string | null;
-  user: User | null;
-}
 
-const initialState: LoginState = {
+const initialState: AuthState = {
   isLoading: false,
   error: null,
   user: null
 };
 
-const loginFeature = createFeature({
-  name: 'login',
+const authFeature = createFeature({
+  name: 'auth',
   reducer: createReducer(
     initialState,
-    on(loginActions.loginUser, (state) => ({
+    on(authActions.loginUser, (state) => ({
       ...state,
       isLoading: true,
       error: null,
     })),
-    on(loginActions.loginUserSuccess, (state, action) => ({
+    on(authActions.loginUserSuccess, (state, action) => ({
       ...state,
       user: action.user,
       isLoading: false,
       error: null,
     })),
-    on(loginActions.loginUserFailure, (state, { error }) => ({
+    on(authActions.loginUserFailure, (state, { error }) => ({
       ...state,
       isLoading: false,
       error,
+    })),
+    on(authActions.registerUser, (state) => ({
+      ...state,
+      isLoading: true,
+      error: null,
+    })),
+    on(authActions.registerUserSuccess, (state, action) => ({
+      ...state,
+      user: action.user,
+      isLoading: false,
+      error: null,
+    })),
+    on(authActions.registerUserFailure, (state, { error }) => ({
+      ...state,
+      isLoading: false,
+      error: error,
     }))
   ),
 });
 
 export const {
-  name: loginFeatureKey,
-  reducer: loginReducer,
+  name: authFeatureKey,
+  reducer: authReducer,
   selectIsLoading,
   selectError,
   selectUser
-} = loginFeature;
+} = authFeature;

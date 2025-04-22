@@ -21,7 +21,6 @@ import { TextInputComponent } from './components/partials/text-input/text-input.
 import { DefaultButtonComponent } from './components/partials/default-button/default-button.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { LoadingComponent } from './components/partials/loading/loading.component';
-import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { CheckoutPageComponent } from './components/checkout-page/checkout-page.component';
 import { OrderItemListComponent } from './components/partials/order-item-list/order-item-list.component';
 import { MapComponent } from './components/partials/map/map.component';
@@ -34,8 +33,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { searchFeatureKey, searchReducer } from './common/search/searchStore/reducers';
 import { EffectsModule, provideEffects } from '@ngrx/effects';
 import  * as searchFoodEffect from './common/search/searchStore/effects';
-import  * as loginEffects from './components/login-page/store/effects';
-import { loginFeatureKey, loginReducer } from './components/login-page/store/reducers';
+import  * as authEffects from './components/login-page/store/effects';
+import { authFeatureKey, authReducer } from './components/login-page/store/reducers';
 
 @NgModule({
   declarations: [
@@ -73,10 +72,12 @@ import { loginFeatureKey, loginReducer } from './components/login-page/store/red
       positionClass: 'toast-bottom-right',
       newestOnTop: false
     }),
-    StoreModule.forRoot(loginReducer),
+    StoreModule.forRoot(authReducer),
     StoreModule.forRoot(searchReducer),
     StoreModule.forFeature(searchFeatureKey, searchReducer),
-    StoreModule.forFeature(loginFeatureKey, loginReducer),
+    StoreModule.forFeature(authFeatureKey, authReducer),
+    EffectsModule.forRoot(searchFoodEffect),
+    EffectsModule.forRoot(authEffects),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: isDevMode(),
@@ -84,19 +85,15 @@ import { loginFeatureKey, loginReducer } from './components/login-page/store/red
       trace: false, //  If set to true, will include stack trace for every dispatched action, so you can see it in trace tab jumping directly to that part of code
       traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
       connectOutsideZone: true
-    }),
-    EffectsModule.forRoot(searchFoodEffect),
-    EffectsModule.forRoot(loginEffects),
-    
-    // provideEffects(searchFoodEffect)
+    })
   ],
   providers: [
      {
       provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
     },
-    {
-      provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
+    // }
   ],
   bootstrap: [AppComponent]
 })
