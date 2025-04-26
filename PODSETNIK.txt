@@ -1,0 +1,19 @@
+link za DB: https://cloud.mongodb.com/v2/65a8591763f89b1b1e01e2a7#/metrics/replicaSet/67e3eba478d6f43bb171721f
+
+Kreiraj plan za GET food funkcionalnost tako da bude uradjena pomocu NgRx.
+Treba kreirati Store folder u okviru home stranice.
+Nakon loadovanja stranice uvek se dogadja GET action, pa stoga je treba kretirati u okviru actions.ts
+Dalje, treba izmestiti logiku getFoods iz servisa nakon sto se metod uspesno izvrsi.
+Dalje, kreriramo reducer-e i effects (ne treba redirect).
+Na kraju, registrujemo sve u okviru app Modula (Razmisliti da se mozda unapredi verzija A)?*
+
+MERGE-OVATI U Main nakon ovoga!!!
+
+
+Sledeci koraci:
+1. Dodavanje nove hrane (izmena postojecih slika)
+2. Izmena stranice za lokaciju tako da se mapa prikazuje kako treba
+3. NgRx akcije za: search food, za dodavanje u Cart, za kreiranje Order-a.
+
+
+*razmotriti komandu kod Docker-a da se jwt i adresa odmah posalju kao argumenti
