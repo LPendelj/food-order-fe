@@ -28,13 +28,13 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { PaymentPageComponent } from './components/payment-page/payment-page.component';
 import { PaypalButtonComponent } from './components/partials/paypal-button/paypal-button.component';
 import { OrderTrackPageComponent } from './components/order-track-page/order-track-page.component';
-import { provideState, provideStore, StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { searchFeatureKey, searchReducer } from './common/search/searchStore/reducers';
-import { EffectsModule, provideEffects } from '@ngrx/effects';
-import  * as searchFoodEffect from './common/search/searchStore/effects';
-import  * as authEffects from './components/login-page/store/effects';
+import { EffectsModule } from '@ngrx/effects';
+import * as authEffects from './components/login-page/store/effects';
+import * as foodDataEffect from './components/home/store/effects';
 import { authFeatureKey, authReducer } from './components/login-page/store/reducers';
+import { foodFeatureKey, foodReducer } from './components/home/store/reducers';
 
 @NgModule({
   declarations: [
@@ -73,11 +73,10 @@ import { authFeatureKey, authReducer } from './components/login-page/store/reduc
       newestOnTop: false
     }),
     StoreModule.forRoot(authReducer),
-    StoreModule.forRoot(searchReducer),
-    StoreModule.forFeature(searchFeatureKey, searchReducer),
+    StoreModule.forRoot(foodReducer),
     StoreModule.forFeature(authFeatureKey, authReducer),
-    EffectsModule.forRoot(searchFoodEffect),
-    EffectsModule.forRoot(authEffects),
+    StoreModule.forFeature(foodFeatureKey, foodReducer),
+    EffectsModule.forRoot([authEffects, foodDataEffect]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: isDevMode(),

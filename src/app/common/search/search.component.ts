@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { searchActions } from './searchStore/actions';
 
 @Component({
   selector: 'app-search',
@@ -27,8 +26,7 @@ export class SearchComponent implements OnInit {
 
   search(): void{
     if(this.searchTerm){
-      this.store.dispatch(searchActions.searchFood({searchTerm: this.searchTerm}));
-      // this.router.navigateByUrl(`/search/${this.searchTerm}`)
+      this.router.navigateByUrl(`/search/${this.searchTerm}`)
     }
     
   }

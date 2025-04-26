@@ -20,12 +20,11 @@ export class FoodService {
     return this.http.get<Food>(FOODS_BY_ID_URL + foodId);
   }
 
-
-  getAllFoodsBySearchTerm(searchTerm: any): Observable<Food[]> {
+  getFoodBySearchTerm(searchTerm: any): Observable<Food[]> {
     return this.http.get<Food[]>(FOODS_BY_SEARCH_URL + searchTerm)
   }
 
-  getAllFoodsByTag(tag: string){
+  getFoodByTag(tag: string){
     return tag === "All" ?
     this.getAll():
     this.http.get<Food[]>(FOODS_BY_TAG_URL + tag);
