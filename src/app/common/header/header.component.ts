@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { selectUser } from 'src/app/components/login-page/store/reducers';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -15,7 +17,8 @@ export class HeaderComponent implements OnInit {
   user!:User;
   constructor(
     private cartService:CartService,
-    private userService:UserService
+    private userService:UserService,
+    private store: Store
     ) {
 
    }
@@ -24,11 +27,14 @@ export class HeaderComponent implements OnInit {
     this.cartService.getCartObservable().subscribe((newCart) => {
       this.cartQuantity = newCart.totalCount;
     })
-
-    this.userService.userObservable.subscribe((newUser: User) => {
-
-      this.user = newUser;
+    this.store.select(selectUser).subscribe((user) => {
+      user? this.user = user : null
     })
+
+
+    // this.userService.userObservable.subscribe((newUser: User) => {
+    //   this.user = newUser;
+    // })
   }
 
   logout(){
@@ -36,6 +42,7 @@ export class HeaderComponent implements OnInit {
   }
 
   get isAuth(){
-    return this.user.token;
+    return this.user? this.user.token : false;
+    // return this.user.token;
   }
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,7 +21,6 @@ import { TextInputComponent } from './components/partials/text-input/text-input.
 import { DefaultButtonComponent } from './components/partials/default-button/default-button.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { LoadingComponent } from './components/partials/loading/loading.component';
-import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { CheckoutPageComponent } from './components/checkout-page/checkout-page.component';
 import { OrderItemListComponent } from './components/partials/order-item-list/order-item-list.component';
 import { MapComponent } from './components/partials/map/map.component';
@@ -29,6 +28,13 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { PaymentPageComponent } from './components/payment-page/payment-page.component';
 import { PaypalButtonComponent } from './components/partials/paypal-button/paypal-button.component';
 import { OrderTrackPageComponent } from './components/order-track-page/order-track-page.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import * as authEffects from './components/login-page/store/effects';
+import * as foodDataEffect from './components/home/store/effects';
+import { authFeatureKey, authReducer } from './components/login-page/store/reducers';
+import { foodFeatureKey, foodReducer } from './components/home/store/reducers';
 
 @NgModule({
   declarations: [
@@ -65,15 +71,28 @@ import { OrderTrackPageComponent } from './components/order-track-page/order-tra
       timeOut: 4000,
       positionClass: 'toast-bottom-right',
       newestOnTop: false
+    }),
+    StoreModule.forRoot(authReducer),
+    StoreModule.forRoot(foodReducer),
+    StoreModule.forFeature(authFeatureKey, authReducer),
+    StoreModule.forFeature(foodFeatureKey, foodReducer),
+    EffectsModule.forRoot([authEffects, foodDataEffect]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: isDevMode(),
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+      trace: false, //  If set to true, will include stack trace for every dispatched action, so you can see it in trace tab jumping directly to that part of code
+      traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
+      connectOutsideZone: true
     })
   ],
   providers: [
      {
       provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
     },
-    {
-      provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
+    // }
   ],
   bootstrap: [AppComponent]
 })

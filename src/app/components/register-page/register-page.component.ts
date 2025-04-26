@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { UserService } from 'src/app/services/user/user.service';
 import { UserRegister } from 'src/app/shared/interfaces/UserRegister';
 import { PasswordMatchValidator } from 'src/app/shared/validators/PasswordMatchValidator';
+import { authActions } from '../login-page/store/actions';
 
 @Component({
   selector: 'app-register-page',
@@ -19,9 +21,8 @@ export class RegisterPageComponent implements OnInit{
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private store: Store
   ){
 
   }
@@ -58,12 +59,7 @@ export class RegisterPageComponent implements OnInit{
       confirmPassword: fv.confirmPassword,
       address: fv.address
     }
-
-    this.userService.register(user).subscribe(
-      () => {
-       this.router.navigateByUrl(this.returnUrl);
-      }
-    )
+    this.store.dispatch(authActions.registerUser({ request: user }));
   }
 
 }
