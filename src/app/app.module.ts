@@ -35,6 +35,7 @@ import * as authEffects from './components/login-page/store/effects';
 import * as foodDataEffect from './components/home/store/effects';
 import { authFeatureKey, authReducer } from './components/login-page/store/reducers';
 import { foodFeatureKey, foodReducer } from './components/home/store/reducers';
+import { AddFoodComponent } from './components/add-food/add-food.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { foodFeatureKey, foodReducer } from './components/home/store/reducers';
     MapComponent,
     PaymentPageComponent,
     PaypalButtonComponent,
-    OrderTrackPageComponent
+    OrderTrackPageComponent,
+    AddFoodComponent
   ],
   imports: [
     BrowserModule,
