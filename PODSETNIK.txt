@@ -1,3 +1,5 @@
+NALOG - misa.misic@mail.com
+
 link za DB: https://cloud.mongodb.com/v2/65a8591763f89b1b1e01e2a7#/metrics/replicaSet/67e3eba478d6f43bb171721f
 
 Na kraju, registrujemo sve u okviru app Modula (Razmisliti da se mozda unapredi verzija A)?*
