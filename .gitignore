@@ -1,4 +1,5 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
+PODSETNIK.txt
 
 # Compiled output
 /dist
@@ -36,7 +37,6 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
-PODSETNIK.txt
 
 # System files
 .DS_Store
