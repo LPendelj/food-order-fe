@@ -1,7 +1,7 @@
 
 <header>
   <div class="container">
-    <a routerLink="/" class="logo">Food Mine!</a>
+    <a routerLink="/" class="logo">FoodMan</a>
     <nav>
       <ul>
         <li *ngIf="!isAuth">
@@ -12,7 +12,7 @@
           <div class="menu">
             <a routerLink="/profile">Profile</a>
             <a routerLink="/orders">Orders</a>
-            <a routerLink="/food-create">Add Food</a>
+            <a routerLink="/add-food">Add Food</a>
             <a (click)="logout()">Logout</a>
           </div>
         </li>

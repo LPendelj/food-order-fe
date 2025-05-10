@@ -1,1 +1,25 @@
-<p>add-food works!</p>
+<div class="container">
+    <div class="form-container">
+        <h1>Add Food Item</h1>
+        <form (ngSubmit)="onSubmit()" [formGroup]="foodForm">
+            <text-input
+            [control]="formControls['name']"
+            [showErrorWhen]="isSubmitted"
+            type=text
+            label="Food Name"
+            >
+    
+            </text-input>
+            <input-container [label]="'Upload image'" height="120px" class="input-container">
+                <default-button [type]="'button'" text="Upload" (click)="onUpload($event)"></default-button>
+                <input class="file-input" type="file" id="image" accept="image/png, image/jpeg" (change)="onFileSelected($event)" #fileInput required>
+            </input-container>
+        </form>
+
+
+        
+        <div *ngIf="foodImage">
+            <img width="300px" height="450px" [src]="foodImage" alt="">
+        </div>
+    </div>
+</div>

@@ -59,7 +59,7 @@ const ROUTES: Routes = [
   {
     path: 'add-food',
     component: AddFoodComponent,
-    canActivate: [authGuard, adminGuard]
+    canActivate: [authGuard, adminGuard] //adminGuard
   }
 ];
 

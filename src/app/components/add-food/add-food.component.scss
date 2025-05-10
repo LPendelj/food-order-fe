@@ -1,0 +1,31 @@
+.container{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    margin-top: 3rem;
+}
+
+.form-container{
+    width: 28rem;
+}
+.file-input{
+    border: 2px solid #ccc;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    color: #333;
+    display: none;
+    // padding: 0.75rem 1rem;
+    // font-size: 1rem;
+    // border: 2px solid #ccc;
+    // border-radius: 0.5rem;
+    // background-color: #fff;
+    // color: #333;
+    // transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+// .file-input::before {
+
+// }
+
+// .input-container{
+//     height: 120px;
+// }

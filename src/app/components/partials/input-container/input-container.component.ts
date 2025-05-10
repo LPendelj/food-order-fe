@@ -14,6 +14,9 @@ export class InputContainerComponent {
   @Input()
   bgColor = 'white';
 
+  @Input()
+  height = '100%';
+
   constructor(){
 
   }
